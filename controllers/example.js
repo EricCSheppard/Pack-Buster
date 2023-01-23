@@ -1,6 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Example = require('../models/example')
+const axios = require('axios')
 
 // Create router
 const router = express.Router()
@@ -22,8 +23,8 @@ router.use((req, res, next) => {
 // Routes
 
 // index ALL
-router.get('/', (req, res) => {
-	Example.find({})
+router.get('/', async (req, res) => {
+        Example.find({})
 		.then(examples => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn

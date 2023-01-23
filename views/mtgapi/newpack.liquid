@@ -1,0 +1,14 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+    <div class="container-md">
+        <h2>Your Cards!</h2>
+            <div class="row">
+                {% for cards in mtgCardPack %}
+                    <div class="card me-3 mb-3" style="width: 18rem">
+                        <div class="card-body">
+                            <img src="{{cards.imageUrl}}" width="200" height="300"></img>
+                        </div>
+                {% endfor %}
+            </div>
+    </div>
+{% endblock %}
