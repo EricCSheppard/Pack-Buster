@@ -5,9 +5,11 @@
         <h2>
             {{ savedPack.title }} -
         </h2>
+            <div class="col mt-3">
+                        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ savedPack.card.id }}&type=card" max-width="100%" height="auto"></img>
+                    </div>
         {% if savedPack.owner == userId %}
         <div class="btn-group">
-
             <a href="/savedpacks/{{ savedPack.id }}/edit" class="btn btn-primary">Edit</a>
             <form action="/savedpacks/{{ savedPack.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete" class="btn btn-danger">
