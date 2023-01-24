@@ -5,11 +5,19 @@
         <h2>
             {{ savedPack.title }} -
         </h2>
-            <div class="col mt-3">
-                        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ savedPack.card.id }}&type=card" max-width="100%" height="auto"></img>
-                    </div>
+        <hr>
+        {% if savedPack.cards.length > 0 %}
+        <div class="container-md row">
+            {% for card in savedPack.cards %}
+                    {% render '../card.liquid', card: card, userId: userId, savedPack: savedPack %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <small>no cards yet...</small>
+    {% endif %}
+    <hr>
         {% if savedPack.owner == userId %}
-        <div class="btn-group">
+        <div class="btn-group mt-3">
             <a href="/savedpacks/{{ savedPack.id }}/edit" class="btn btn-primary">Edit</a>
             <form action="/savedpacks/{{ savedPack.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete" class="btn btn-danger">

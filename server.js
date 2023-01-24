@@ -8,6 +8,7 @@ const SavedPackRouter = require('./controllers/savedPack')
 const UserRouter = require('./controllers/user')
 const User = require("./models/user")
 const ApiRouter = require('./controllers/mtgapi')
+const CardRouter = require('./controllers/cardControllers')
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
 
@@ -25,6 +26,7 @@ middleware(app)
 app.use('/auth', UserRouter)
 app.use('/savedPacks', SavedPackRouter)
 app.use('/mtgapi', ApiRouter)
+app.use('/cards', CardRouter)
 
 app.get('/', (req, res) => {
     const { username, userId, loggedIn } = req.session

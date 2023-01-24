@@ -43,6 +43,7 @@ router.get('/mine', (req, res) => {
 	savedPack.find({ owner: userId })
 		.then(savedPacks => {
 			res.render('savedPacks/index', { savedPacks, username, loggedIn })
+            console.log(savedPacks)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -57,8 +58,6 @@ router.get('/new', (req, res) => {
 
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
-	req.body.ready = req.body.ready === 'on' ? true : false
-
 	req.body.owner = req.session.userId
 	savedPack.create(req.body)
 		.then(savedPack => {

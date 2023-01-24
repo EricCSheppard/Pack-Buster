@@ -1,27 +1,26 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/savedPacks?_method=PUT" method="POST">
+    <form action="/cards/{{ savedPack.id }}" method="POST">
         <fieldset>
-            <legend>Create New pack</legend>
-            <label class="form-label">Title: </label>
+            <legend>Add Cards</legend>
+            <label class="form-label">Card Name:</label>
             <input 
                 type="text" 
-                name="title" 
-                placeholder="{{ savedPack.title }}"
-                value="{{ savedPack.title }}"
+                name="name" 
+                placeholder="Card Name"
                 class="form-control"
             >
-            <label class="form-label">Body:</label>
+            <label class="form-label">Multiverse Id:</label>
             <input 
                 type="text" 
-                name="body" 
-                placeholder="{{ savedPack.body }}" 
-                value="{{ savedPack.body }}" 
+                name="id" 
+                placeholder="multiverse ID" 
+                value="" 
                 class="form-control"
             >
         </fieldset>
-        <input type="submit" value="Edit Pack" class="btn btn-success">
+        <input type="submit" value="Add Card" class="btn btn-success">
     </form>
 </div>
 {% endblock %}

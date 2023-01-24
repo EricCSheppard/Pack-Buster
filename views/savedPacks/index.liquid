@@ -1,10 +1,10 @@
 {% layout 'layout.liquid'%}
 {% block content %}
-<div>
+<div class="container-md">
     <h2 class="display-6">All Packs</h2>
     <div class="row">
         {% for savedPack in savedPacks %}
-        <div class="card" style="width: 18rem;">
+        <div class="card me-3" style="width: 18rem;">
             <h5 class="card-header">{{ savedPack.title }}</h5>
             <div class="card-body">
                 <p class="card-text">
