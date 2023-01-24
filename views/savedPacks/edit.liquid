@@ -1,0 +1,27 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/savedPacks?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Create New pack</legend>
+            <label class="form-label">Title: </label>
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="{{ savedPack.title }}"
+                value="{{ savedPack.title }}"
+                class="form-control"
+            >
+            <label class="form-label">Body:</label>
+            <input 
+                type="text" 
+                name="body" 
+                placeholder="{{ savedPack.body }}" 
+                value="{{ savedPack.body }}" 
+                class="form-control"
+            >
+        </fieldset>
+        <input type="submit" value="Edit Pack" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}

@@ -3,5 +3,19 @@
 
     <h1>Welcome!</h1>
     <a href="/mtgapi/newpack" class="nav-link text-dark">Bust it</a>
+    <form action="/mtgapi/newpack" method="GET">
+        <fieldset>
+            <legend>Select a set:</legend>
+            <label class="form-label">Set:</label>
+            <input 
+                type="text" 
+                name="set" 
+                placeholder="Enter set code"
+                class="form-control"
+            >
+            </fieldset>
+        <input type="submit" value="BUST IT!" class="btn btn-success">
+    </form>
+</div>
 
 {% endblock %}
