@@ -1,0 +1,19 @@
+{% layout 'layout.liquid'%}
+{% block content %}
+{% if users.length > 0 %}
+<div class="container-md">    
+    <h2 class="display-6">User collections:</h2>
+    <div class="ul">
+        {% for user in users %}
+            <div class="col">
+                <h3>{{ user.username }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+    {% else %}
+    <div class="container-md">
+            <h2>No users!</h2>
+        </div>
+    {% endif %}
+{% endblock %}

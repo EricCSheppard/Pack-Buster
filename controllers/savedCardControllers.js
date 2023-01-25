@@ -2,6 +2,7 @@
 const express = require('express')
 const savedCard = require('../models/savedCard')
 const axios = require('axios')
+const user = require('../models/user')
 
 // Create router
 const router = express.Router()
@@ -23,16 +24,28 @@ router.use((req, res, next) => {
 // Routes
 
 // index ALL
-router.get('/', async (req, res) => {
-        savedCard.find({})
-		.then(savedCards => {
-			const username = req.session.username
-			const loggedIn = req.session.loggedIn
-			res.render('savedCards/index', { savedCards, username, loggedIn })
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
+// router.get('/', (req, res) => {
+//         savedCard.find({})
+// 		.then(savedCards => {
+// 			const username = req.session.username
+// 			const loggedIn = req.session.loggedIn
+// 			res.render('savedCards/index', { savedCards, username, loggedIn })
+// 		})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
+
+// Index of users 
+router.get('/', (req, res) => {
+    user.find({})
+    .then(users => {
+        const { username, userId, loggedIn } = req.session
+        res.render('savedCards/indexusers', { users, username, loggedIn })
+    })
+    .catch(error => {
+        res.redirect(`/error?error=${error}`)
+    })
 })
 
 // index that shows only the user's savedCards
@@ -61,7 +74,7 @@ router.post('/', (req, res) => {
 	savedCard.create(req.body)
 		.then(savedCard => {
 			console.log('this was returned from create', savedCard)
-			res.redirect('/savedCards')
+			res.redirect('/savedCards/mine')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

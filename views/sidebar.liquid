@@ -2,16 +2,16 @@
 <div class="container-md">
     <h2 class="display-6">Make this go to the side</h2>
     <div class="row">
-        {% for savedPack in savedPacks %}
+        {% for savedCard in savedCards %}
         <div class="card me-3" style="width: 18rem;">
-            <h5 class="card-header">{{ savedPack.title }}</h5>
+            <h5 class="card-header">{{ savedCard.name }}</h5>
             <div class="card-body">
                 <p class="card-text">
-                    Time: {{ savedPack.createdAt }}
+                    Time: {{ savedCard.name }}
                 </p>
                 </p>
-                <a href="/savedPacks/{{ savedPack.id }}" class="btn btn-info">
-                    View {{ savedPack.title }}
+                <a href="/savedCards/{{ savedCard.id }}" class="btn btn-info">
+                    View {{ savedCard.title }}
                 </a>
             </div>
         </div>
