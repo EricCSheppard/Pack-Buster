@@ -1,0 +1,19 @@
+{% layout 'layout.liquid'%}
+{% block content %}
+<div class="container-md">
+    {% if savedCards.length > 0 %}
+    <h2 class="display-6">My Cards</h2>
+    <div class="row">
+        {% for savedCard in savedCards %}
+            <div class="col">
+                <a href="/savedCards/{{savedCard.id}}"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ savedCard.multiverseid }}&type=card"></a>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="container-md">
+            <h2>No cards yet... Go bust some packs!</h2>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

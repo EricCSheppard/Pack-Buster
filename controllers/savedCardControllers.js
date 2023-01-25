@@ -1,6 +1,6 @@
 // Import Dependencies
 const express = require('express')
-const savedPack = require('../models/savedPack')
+const savedCard = require('../models/savedCard')
 const axios = require('axios')
 
 // Create router
@@ -24,25 +24,25 @@ router.use((req, res, next) => {
 
 // index ALL
 router.get('/', async (req, res) => {
-        savedPack.find({})
-		.then(savedPacks => {
+        savedCard.find({})
+		.then(savedCards => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			res.render('savedPacks/index', { savedPacks, username, loggedIn })
+			res.render('savedCards/index', { savedCards, username, loggedIn })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
 
-// index that shows only the user's savedPacks
+// index that shows only the user's savedCards
 router.get('/mine', (req, res) => {
     // destructure user info from req.session
     const { username, userId, loggedIn } = req.session
-	savedPack.find({ owner: userId })
-		.then(savedPacks => {
-			res.render('savedPacks/index', { savedPacks, username, loggedIn })
-            console.log(savedPacks)
+	savedCard.find({ owner: userId })
+		.then(savedCards => {
+			res.render('savedCards/index', { savedCards, username, loggedIn })
+            console.log(savedCards)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -52,16 +52,16 @@ router.get('/mine', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('savedPacks/new', { username, loggedIn })
+	res.render('savedCards/new', { username, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
 	req.body.owner = req.session.userId
-	savedPack.create(req.body)
-		.then(savedPack => {
-			console.log('this was returned from create', savedPack)
-			res.redirect('/savedPacks')
+	savedCard.create(req.body)
+		.then(savedCard => {
+			console.log('this was returned from create', savedCard)
+			res.redirect('/savedCards')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -71,10 +71,10 @@ router.post('/', (req, res) => {
 // edit route -> GET that takes us to the edit form view
 router.get('/:id/edit', (req, res) => {
 	// we need to get the id
-	const savedPackId = req.params.id
-	savedPack.findById(savedPackId)
-		.then(savedPack => {
-			res.render('savedPacks/edit', { savedPack })
+	const savedCardId = req.params.id
+	savedCard.findById(savedCardId)
+		.then(savedCard => {
+			res.render('savedCards/edit', { savedCard })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -83,10 +83,10 @@ router.get('/:id/edit', (req, res) => {
 
 // update route
 router.put('/:id', (req, res) => {
-	const savedPackId = req.params.id
-	savedPack.findByIdAndUpdate(savedPackId, req.body, { new: true })
-		.then(savedPack => {
-			res.redirect(`/savedPacks/${savedPack.id}`)
+	const savedCardId = req.params.id
+	savedCard.findByIdAndUpdate(savedCardId, req.body, { new: true })
+		.then(savedCard => {
+			res.redirect(`/savedCards/${savedCard.id}`)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -95,11 +95,11 @@ router.put('/:id', (req, res) => {
 
 // show route
 router.get('/:id', (req, res) => {
-	const savedPackId = req.params.id
-	savedPack.findById(savedPackId)
-		.then(savedPack => {
+	const savedCardId = req.params.id
+	savedCard.findById(savedCardId)
+		.then(savedCard => {
             const {username, loggedIn, userId} = req.session
-			res.render('savedPacks/show', { savedPack, username, loggedIn, userId })
+			res.render('savedCards/show', { savedCard, username, loggedIn, userId })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -108,10 +108,10 @@ router.get('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
-	const savedPackId = req.params.id
-	savedPack.findByIdAndRemove(savedPackId)
-		.then(savedPack => {
-			res.redirect('/savedPacks')
+	const savedCardId = req.params.id
+	savedCard.findByIdAndRemove(savedCardId)
+		.then(savedCard => {
+			res.redirect('/savedCards')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

@@ -3,16 +3,16 @@
     <div class="container-fluid">
         <a href="/" class="navbar-brand">Pack Buster</a>
         {% if loggedIn %}
-        <a href="/savedPacks/mine" class="nav-link text-light me-3">Hello {{ username }} </a>
+        <a href="/savedCards/mine" class="nav-link text-light me-3">Hello {{ username }} </a>
         {% endif %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-                <a href="/savedPacks" class="nav-link text-light me-3">View All</a>
-                <a href="/savedPacks/new" class="nav-link text-light me-3">New</a>
-                <a href="/savedPacks/mine" class="nav-link text-light me-3">My Packs</a>
+                <a href="/savedCards" class="nav-link text-light me-3">View All</a>
+                <a href="/savedCards/new" class="nav-link text-light me-3">New</a>
+                <a href="/savedCards/mine" class="nav-link text-light me-3">My Packs</a>
                 <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
             {% else %}
                 <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>

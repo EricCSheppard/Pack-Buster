@@ -1,0 +1,25 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/savedCards" method="POST">
+        <fieldset>
+            <legend>Add Cards</legend>
+            <label class="form-label">Card Name:</label>
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="Card Name"
+                class="form-control"
+            >
+            <label class="form-label">Multiverse Id:</label>
+            <input 
+                type="text" 
+                name="multiverseid" 
+                placeholder="multiverse ID" 
+                class="form-control"
+            >
+        </fieldset>
+        <input type="submit" value="Add Card" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}
