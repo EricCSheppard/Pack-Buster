@@ -5,7 +5,9 @@
             <div class="row">
                 {% for cards in mtgCardPack %}
                     <div class="col mt-3">
-                        <img src="{{cards.imageUrl}}" max-width="100%" height="auto"></img>
+                        <img src="{{cards.imageUrl}}" width="226px" height="311px"></img>
+                            <form action="/cards/{{ savedPack.id }}" method="POST">
+                            <input type="submit" class=""btn btn-danger value="Save"></form>
                     </div>
                 {% endfor %}
             </div>

@@ -1,0 +1,21 @@
+{% block content %}
+<div class="container-md">
+    <h2 class="display-6">Make this go to the side</h2>
+    <div class="row">
+        {% for savedPack in savedPacks %}
+        <div class="card me-3" style="width: 18rem;">
+            <h5 class="card-header">{{ savedPack.title }}</h5>
+            <div class="card-body">
+                <p class="card-text">
+                    Time: {{ savedPack.createdAt }}
+                </p>
+                </p>
+                <a href="/savedPacks/{{ savedPack.id }}" class="btn btn-info">
+                    View {{ savedPack.title }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

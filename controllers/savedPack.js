@@ -28,7 +28,6 @@ router.get('/', async (req, res) => {
 		.then(savedPacks => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			
 			res.render('savedPacks/index', { savedPacks, username, loggedIn })
 		})
 		.catch(error => {
@@ -85,8 +84,6 @@ router.get('/:id/edit', (req, res) => {
 // update route
 router.put('/:id', (req, res) => {
 	const savedPackId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
-
 	savedPack.findByIdAndUpdate(savedPackId, req.body, { new: true })
 		.then(savedPack => {
 			res.redirect(`/savedPacks/${savedPack.id}`)
