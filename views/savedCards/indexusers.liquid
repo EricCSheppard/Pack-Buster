@@ -6,7 +6,7 @@
     <div class="ul">
         {% for user in users %}
             <div class="col">
-                <h3>{{ user.username }}</h3>
+                <h3><a href="savedcards/user/{{ user.id }}">{{ user.username }}</a></h3>
             </div>
         {% endfor %}
     </div>

@@ -62,6 +62,24 @@ router.get('/mine', (req, res) => {
 		})
 })
 
+// index that shows a specific user's savedCards
+router.get('/user/:id', (req, res) => {
+    // destructure user info from req.session
+    const { username, userId, loggedIn } = req.session
+    const ownerId = req.params.id
+	savedCard.find({ owner: ownerId })
+		.then(savedCards => {
+			res.render('savedCards/index', { savedCards, username, loggedIn })
+            console.log(savedCards)
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+
+
+
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
@@ -124,7 +142,7 @@ router.delete('/:id', (req, res) => {
 	const savedCardId = req.params.id
 	savedCard.findByIdAndRemove(savedCardId)
 		.then(savedCard => {
-			res.redirect('/savedCards')
+			res.redirect('/savedCards/mine')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
