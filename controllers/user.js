@@ -21,9 +21,9 @@ router.get('/signup', (req, res) => {
 // POST to send the signup info
 router.post('/signup', async (req, res) => {
 	// set the password to hashed password
-  req.body.password = await bcrypt.hash(
-		req.body.password,
-		await bcrypt.genSalt(10)
+    req.body.password = await bcrypt.hash(
+    req.body.password,
+    await bcrypt.genSalt(10)
 	)
 	// create a new user
 	User.create(req.body)
@@ -66,7 +66,7 @@ router.post('/login', async (req, res) => {
 					req.session.loggedIn = true
 					req.session.userId = user.id
 
-          			const { username, loggedIn, userId } = req.session
+                    const { username, loggedIn, userId } = req.session
 
 					console.log('session user id', req.session.userId)
 					// redirect to /savedCardss if login is successful

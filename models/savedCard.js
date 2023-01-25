@@ -27,4 +27,4 @@ const savedCardSchema = new Schema(
 const savedCard = model('savedCard', savedCardSchema)
 
 // Export our Model
-module.exports = savedCard  
+module.exports = savedCard

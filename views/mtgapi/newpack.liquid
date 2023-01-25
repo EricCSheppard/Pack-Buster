@@ -6,10 +6,25 @@
                 {% for cards in mtgCardPack %}
                     <div class="col mt-3">
                         <img src="{{cards.imageUrl}}" width="226px" height="311px"></img>
-                            <form action="/cards/{{ savedCard.id }}" method="POST">
-                            <input type="submit" class=""btn btn-danger value="Save"></form>
-                    </div>
-                {% endfor %}
-            </div>
+                        <form action="/savedCards" method="POST">
+                            <fieldset>
+                                <input 
+                                    type="hidden" 
+                                    name="name" 
+                                    class="form-control"
+                                    value="{{cards.name}}"
+                                >
+                                <input 
+                                    type="hidden" 
+                                    name="multiverseid" 
+                                    class="form-control"
+                                    value="{{cards.multiverseid}}"
+                                >
+                            </fieldset>
+                        <input type="submit" class="btn btn-success" value="Save">
+                        </form>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
