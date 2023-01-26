@@ -7,6 +7,16 @@ const User = require('../models/user')
 // Create router
 const router = express.Router()
 
+// Postman card index route ----------------------
+
+router.get('/cardinfo', (req, res) => {
+    savedCard.find({})
+    .then(savedCard => {
+        res.json({ savedCard: savedCard })
+    })
+    .catch(err => console.log('the following error occurredL \n', err))
+})
+
 // Router Middleware
 // Authorization middleware
 // If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
@@ -35,6 +45,7 @@ router.use((req, res, next) => {
 // 			res.redirect(`/error?error=${error}`)
 // 		})
 // })
+
 
 // Index of users 
 router.get('/', (req, res) => {
@@ -94,11 +105,12 @@ router.get('/new', (req, res) => {
 
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
+    const { username, userId, loggedIn } = req.session
 	req.body.owner = req.session.userId
 	savedCard.create(req.body)
 		.then(savedCard => {
-			console.log('this was returned from create', savedCard)
-			res.redirect('/savedCards/mine')
+			console.log('this was returned from create', savedCard, username, userId, loggedIn)
+			res.redirect(`/savedCards/user/${userId}`)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

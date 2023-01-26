@@ -16,13 +16,18 @@
     <header>
         {% render './navbar.liquid', loggedIn: loggedIn, username: username, userId: userId %}
     </header>
-    <main>
-        {% block content %} 
-        {% endblock %}
-    </main>
-    <aside>
-        {% render './sidebar.liquid', loggedIn: loggedIn, username: username, userId: userId, savedCards: savedCards %}
-    </aside>
+    <div>
+        <main>
+            
+            {% block content %} 
+            {% endblock %}
+        </main>
+        <aside>
+            {%- comment -%}
+            {% render './sidebar.liquid', loggedIn: loggedIn, username: username, userId: userId, savedCards: savedCards %}
+            {%- endcomment -%}
+        </aside>
+    </div>
     <footer>
     </footer>
     <!-- link in bootstrap scripts -->

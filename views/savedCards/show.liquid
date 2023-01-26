@@ -13,9 +13,9 @@
             <form action="/savedCards/{{ savedCard.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Remove" class="btn btn-danger">
             </form>
-            <a href="/savedCards/mine" class="btn btn-warning">Back</a>
-        </div>
         {% endif %}
+            <a href="/savedCards/user/{{userId}}" class="btn btn-warning">Back</a>
+        </div>
     </article>
 </div>
 {% endblock %}
