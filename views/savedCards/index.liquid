@@ -38,7 +38,7 @@
     {% if user.comments.length > 0 %}
         <div class="container-sm justify-content-center">
             {% for comm in user.comments %}
-                    {% render '../comment.liquid', comm: comm, ownerId: ownerId, user: user %}
+                    {% render '../comment.liquid', comm: comm, ownerId: ownerId, userId: userId, user: user %}
             {% endfor %}
         </div>
     {% else %}

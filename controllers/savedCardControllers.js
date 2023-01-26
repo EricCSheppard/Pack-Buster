@@ -71,7 +71,7 @@ router.get('/user/:id', (req, res) => {
             User.findById(ownerId)
             .populate('comments.author', 'username')
             .then(user =>{
-                res.render('savedCards/index', { user, ownerId, savedCards, username, loggedIn })
+                res.render('savedCards/index', { user, ownerId, savedCards, userId, username, loggedIn })
             })
             .catch(error => {
                 res.redirect(`/error?error=${error}`)
