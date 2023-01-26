@@ -31,6 +31,7 @@
                     {% endif %}
                 </div>
             {% endfor %}
+            {% render './sidebar.liquid', savedCards: savedCards, userId: userId  %}
         </div>
-    </div>
+    </div>  
 {% endblock %}

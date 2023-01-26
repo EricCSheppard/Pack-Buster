@@ -14,6 +14,8 @@ const savedCardSchema = new Schema(
         multiverseid: { type: String, required: true },
         rarity: { type: String },
         setName: { type: String },
+        notes: { type: String },
+        own: { type: Boolean},
         // : { type: String, required: true },
 		owner: {
 			type: Schema.Types.ObjectID,

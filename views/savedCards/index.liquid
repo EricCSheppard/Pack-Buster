@@ -1,8 +1,12 @@
 {% layout 'layout.liquid'%}
 {% block content %}
-<div class="container-md">
+{% if ownerId == userId %}
+    <h2>My Cards</h2>
+{% else %}
+    <h2>{{ user.username }}'s Cards</h2>
+{% endif %}
+<div class="container-md mt-4">
     {% if savedCards.length > 0 %}
-    <h2 class="display-6">My Cards</h2>
     <div class="row">
         {% for savedCard in savedCards %}
             <div class="col">

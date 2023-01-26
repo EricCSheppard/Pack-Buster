@@ -118,29 +118,29 @@ router.post('/', (req, res) => {
 })
 
 // edit route -> GET that takes us to the edit form view
-router.get('/:id/edit', (req, res) => {
-	// we need to get the id
-	const savedCardId = req.params.id
-	savedCard.findById(savedCardId)
-		.then(savedCard => {
-			res.render('savedCards/edit', { savedCard })
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
+// router.get('/:id/edit', (req, res) => {
+// 	// we need to get the id
+// 	const savedCardId = req.params.id
+// 	savedCard.findById(savedCardId)
+// 		.then(savedCard => {
+// 			res.render('savedCards/edit', { savedCard })
+// 		})
+// 		.catch((error) => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 // update route
-router.put('/:id', (req, res) => {
-	const savedCardId = req.params.id
-	savedCard.findByIdAndUpdate(savedCardId, req.body, { new: true })
-		.then(savedCard => {
-			res.redirect(`/savedCards/${savedCard.id}`)
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
+// router.put('/:id', (req, res) => {
+// 	const savedCardId = req.params.id
+// 	savedCard.findByIdAndUpdate(savedCardId, req.body, { new: true })
+// 		.then(savedCard => {
+// 			res.redirect(`/savedCards/${savedCard.id}`)
+// 		})
+// 		.catch((error) => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 // show route
 router.get('/:id', (req, res) => {
@@ -157,10 +157,11 @@ router.get('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
+    const { username, userId, loggedIn } = req.session
 	const savedCardId = req.params.id
 	savedCard.findByIdAndRemove(savedCardId)
 		.then(savedCard => {
-			res.redirect('/savedCards/mine')
+			res.redirect(`/savedCards/user/${userId}`)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
