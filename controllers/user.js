@@ -11,7 +11,17 @@ const bcrypt = require('bcryptjs')
 const router = express.Router()
 
 
-// Routes
+// Routes-----------------------------------
+
+// User Index Postman Route
+
+router.get('/userinfo', (req, res) => {
+    User.find({})
+    .then(users => {
+        res.json({ users: users })
+    })
+    .catch(err => console.log('the following error occurredL \n', err))
+})
 
 // GET to render the signup form
 router.get('/signup', (req, res) => {

@@ -8,6 +8,7 @@ const SavedCardRouter = require('./controllers/savedCardControllers')
 const UserRouter = require('./controllers/user')
 const User = require("./models/user")
 const ApiRouter = require('./controllers/mtgapi')
+const CommentRouter = require('./controllers/commentControllers')
 // const CardRouter = require('./controllers/cardControllers')
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -26,6 +27,7 @@ middleware(app)
 app.use('/auth', UserRouter)
 app.use('/savedCards', SavedCardRouter)
 app.use('/mtgapi', ApiRouter)
+app.use('/comments', CommentRouter)
 // app.use('/cards', CardRouter)
 
 app.get('/', (req, res) => {

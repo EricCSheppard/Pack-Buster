@@ -2,7 +2,7 @@
 const express = require('express')
 const savedCard = require('../models/savedCard')
 const axios = require('axios')
-const user = require('../models/user')
+const User = require('../models/user')
 
 // Create router
 const router = express.Router()
@@ -38,7 +38,7 @@ router.use((req, res, next) => {
 
 // Index of users 
 router.get('/', (req, res) => {
-    user.find({})
+    User.find({})
     .then(users => {
         const { username, userId, loggedIn } = req.session
         res.render('savedCards/indexusers', { users, username, loggedIn })
@@ -55,7 +55,7 @@ router.get('/mine', (req, res) => {
 	savedCard.find({ owner: userId })
 		.then(savedCards => {
 			res.render('savedCards/index', { savedCards, username, loggedIn })
-            console.log(savedCards)
+            // console.log(savedCards)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -68,8 +68,18 @@ router.get('/user/:id', (req, res) => {
     const ownerId = req.params.id
 	savedCard.find({ owner: ownerId })
 		.then(savedCards => {
-			res.render('savedCards/index', { savedCards, username, loggedIn })
-            console.log(savedCards)
+            User.findById(ownerId)
+            .populate('comments.author', 'username')
+            .then(user =>{
+                res.render('savedCards/index', { user, ownerId, savedCards, username, loggedIn })
+            })
+            .catch(error => {
+                res.redirect(`/error?error=${error}`)
+            })
+			// res.render('savedCards/index', { user, ownerId, savedCards, username, loggedIn })
+            // console.log(user.comments)
+            // .populate('comments.author', 'username')
+            // console.log(savedCards)  
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
