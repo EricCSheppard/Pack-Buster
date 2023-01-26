@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <a href="/" class="navbar-brand">Pack Buster</a>
         {% if loggedIn %}
-        <a href="/savedCards/mine" class="nav-link text-light me-3">Hello {{ username }} </a>
+        <a href="/savedCards/user/{{userId}}" class="nav-link text-light me-3">Hello {{ username }} </a>
         {% endif %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,6 @@
             {% if loggedIn %}
                 <a href="/savedCards" class="nav-link text-light me-3">View All Collections</a>
                 <a href="/savedCards/new" class="nav-link text-light me-3">Add Cards</a>
-                <a href="/savedCards/mine" class="nav-link text-light me-3">My Cards</a>
                 <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
             {% else %}
                 <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>

@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
     User.find({})
     .then(users => {
         const { username, userId, loggedIn } = req.session
-        res.render('savedCards/indexusers', { users, username, loggedIn })
+        res.render('savedCards/indexusers', { users, username, userId, loggedIn })
     })
     .catch(error => {
         res.redirect(`/error?error=${error}`)
@@ -89,7 +89,7 @@ router.get('/user/:id', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('savedCards/new', { username, loggedIn })
+	res.render('savedCards/new', { username, userId, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
