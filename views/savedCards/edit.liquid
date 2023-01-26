@@ -1,26 +1,24 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/cards/{{ savedPack.id }}" method="POST">
-        <fieldset>
-            <legend>Add Cards</legend>
-            <label class="form-label">Card Name:</label>
-            <input 
-                type="text" 
-                name="name" 
-                placeholder="Card Name"
-                class="form-control"
-            >
-            <label class="form-label">Multiverse Id:</label>
-            <input 
-                type="text" 
-                name="id" 
-                placeholder="multiverse ID" 
-                value="" 
-                class="form-control"
-            >
-        </fieldset>
-        <input type="submit" value="Add Card" class="btn btn-success">
-    </form>
+    <div class="btn-group mt-3">
+        <form action="/savedCards/{{ savedCard.id }}?_method=PUT" method="POST">
+            <fieldset>
+                <legend>Edit card info</legend>
+                <label class="form-label">Notes:</label>
+                <textarea 
+                    rows="3"
+                    cols="25"
+                    type="text" 
+                    name="notes" 
+                    placeholder="Add note here"
+                    class="form-control"
+                    value="{{ savedCard.notes }}"
+                ></textarea>
+            </fieldset>
+            <input type="submit" value="Submit" class="btn btn-success mt-3">
+            <a href="javascript:history.back()" class="btn btn-warning mt-3">Back</a>
+        </form>
+    </div>
 </div>
 {% endblock %}
