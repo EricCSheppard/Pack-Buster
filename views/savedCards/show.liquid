@@ -6,7 +6,20 @@
             {{ savedCard.name }}
         </h2>
         <hr>
-        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ savedCard.multiverseid }}&type=card">
+        <div class="row">
+            <div class="col-3 zoom">
+                <img src="{{ scryInfo.image_uris.png }}" height="311px" width="226px">
+            </div>
+            <div class="col-9">
+                <h4>Additional Info:</h4>
+                <p>Card Type: {{ scryInfo.type_line }}</p>
+                <p>Oracle Text: {{ scryInfo.oracle_text }}</p>
+                <p>Converted Mana Cost: {{ scryInfo.cmc }}</p>
+                <p>Purchase card at tcgplayer.com: <a href="{{ scryInfo.purchase_uris.tcgplayer }}">Buy now!</a></p>
+
+
+            </div>
+        </div>
         <div class="cardInfo col-3 mt-2 bg-light">
                 <p class="mt-2 ms-3">Notes:<br> {{ savedCard.notes }} </p>
             </div>

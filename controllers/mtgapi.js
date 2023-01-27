@@ -21,7 +21,7 @@ router.post('/newpack', (req, res) => {
 
         // Pulls booster of random cards
         
-        const mtgCard = await axios(`${process.env.API_URL}/sets/${mtgSet}/booster`)
+        const mtgCard = await axios(`${process.env.MTG_API_URL}/sets/${mtgSet}/booster`)
         const mtgCardPack = mtgCard.data.cards
         res.render('mtgapi/newpack.liquid', { savedCards, mtgCardPack, username, userId, loggedIn })
     })

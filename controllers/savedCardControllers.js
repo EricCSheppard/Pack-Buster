@@ -146,9 +146,11 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 	const savedCardId = req.params.id
 	savedCard.findById(savedCardId)
-		.then(savedCard => {
+		.then(async savedCard => {
+            const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCard.multiverseid}`)
+            const scryInfo = addlInfo.data
             const {username, loggedIn, userId} = req.session
-			res.render('savedCards/show', { savedCard, username, loggedIn, userId })
+			res.render('savedCards/show', { scryInfo, savedCard, username, loggedIn, userId })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
