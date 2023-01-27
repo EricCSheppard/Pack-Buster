@@ -1,31 +1,32 @@
 {% layout "layout.liquid" %}
 {% block content %}
-    <div class="mx-auto" style="width: 200px; text-align: center;">
-    <h1>Welcome!</h1>
-        <div>
-            <form action="/mtgapi/newpack" method="POST">
-                <fieldset>
-                    <legend>Select a set:</legend>
-                    <select name="set" id="pack">
-                        <option value="LEA">Alpha</option>
-                        <option value="LEB">Beta</option>
-                        <option value="2ED">Unlimited</option>
-                        <option value="3ED">Revised</option>
-                        <option value="4ED">4th Edition</option>
-                        <option value="5ED">5th Edition</option>
-                        <option value="6ED">6th Edition</option>
-                        <option value="7ED">7th Edition</option>
-                        <option value="8ED">7th Edition</option>
-                        <option value="9ED">7th Edition</option>
-                        <option value="10E">10th Edition</option>
-                        <option value="CON">Conflux</option>
-                        <option value="ALA">Shards of Alara</option>
-                        <option value="BOK">Betrayers of Kamigawa</option>
-                    </select>
-                </fieldset>
-                <input type="submit" value="BUST IT!" class="btn btn-success mt-3">
-            </form>
-            <small>(Please allow 3-4 seconds for pack to load)</small>
-        </div>
+<div class="container-md mt-4">    
+    <h2>Welcome!</h2>
+        <hr>
+            <div>
+                <form action="/mtgapi/newpack" method="POST">
+                    <fieldset>
+                        <legend>Select a set:</legend>
+                        <select name="set" id="pack">
+                            <option value="LEA">Alpha</option>
+                            <option value="LEB">Beta</option>
+                            <option value="2ED">Unlimited</option>
+                            <option value="3ED">Revised</option>
+                            <option value="4ED">4th Edition</option>
+                            <option value="5ED">5th Edition</option>
+                            <option value="6ED">6th Edition</option>
+                            <option value="7ED">7th Edition</option>
+                            <option value="8ED">8th Edition</option>
+                            <option value="9ED">9th Edition</option>
+                            <option value="10E">10th Edition</option>
+                            <option value="CON">Conflux</option>
+                            <option value="ALA">Shards of Alara</option>
+                            <option value="BOK">Betrayers of Kamigawa</option>
+                        </select>
+                    </fieldset>
+                    <input type="submit" value="BUST IT!" class="btn btn-success mt-3">
+                </form>
+                <small>(Please allow 3-4 seconds for pack to load)</small>
+            </div>
     </div>
 {% endblock %}

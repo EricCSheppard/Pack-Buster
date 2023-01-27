@@ -39,7 +39,7 @@ router.post('/search', (req, res) => {
     .then(async savedCard => {
         const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/search?q=${mtgSearch}`)
         const scryResult = addlInfo.data.data
-        console.log(scryResult)
+        // console.log(scryResult)
         res.render('mtgapi/searchresults.liquid', { scryResult, savedCard, username, loggedIn, userId })
     })
     .catch(() => {

@@ -1,12 +1,14 @@
 {% layout 'layout.liquid'%}
 {% block content %}
 {% if users.length > 0 %}
-<div class="container-sm">    
-    <h2 class="display-6">User collections:</h2>
+<div class="container-md mt-4">    
+    <h2>User collections:</h2>
+    <hr>
     <div class="ul">
         {% for user in users %}
             <div class="col">
-                <h3><a href="savedcards/user/{{ user.id }}">{{ user.username }}</a></h3>
+                <h5>{{ user.username }} - <a href="savedcards/user/{{ user.id }}" style="text-decoration: none; color: black;">View</a>
+                </h5>
             </div>
         {% endfor %}
     </div>
