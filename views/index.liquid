@@ -2,21 +2,21 @@
 {% block content %}
     <div class="container-md">
     <h1>Welcome!</h1>
-    <form action="/mtgapi/newpack" method="POST">
-        <fieldset>
-            <legend>Select a set:</legend>
-            <label class="form-label">Set:</label>
-            <select name="set" id="pack">
-                <option value="LEA">Alpha</option>
-                <option value="LEB">Beta</option>
-                <option value="2ED">Unlimited</option>
-                <option value="3ED">Revised</option>
-                <option value="ALA">Shards of Alara</option>
-                <option value="10E">10th Edition</option>
-            </select>
-        </fieldset>
-        <input type="submit" value="BUST IT!" class="btn btn-success mt-3">
-    </form>
-</div>
-
+        <div>
+            <form action="/mtgapi/newpack" method="POST">
+                <fieldset>
+                    <legend>Select a set:</legend>
+                    <select name="set" id="pack">
+                        <option value="LEA">Alpha</option>
+                        <option value="LEB">Beta</option>
+                        <option value="2ED">Unlimited</option>
+                        <option value="3ED">Revised</option>
+                        <option value="ALA">Shards of Alara</option>
+                        <option value="10E">10th Edition</option>
+                    </select>
+                </fieldset>
+                <input type="submit" value="BUST IT!" class="btn btn-success mt-3">
+            </form>
+        </div>
+    </div>
 {% endblock %}
