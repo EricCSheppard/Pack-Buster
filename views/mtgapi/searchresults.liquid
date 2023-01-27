@@ -1,0 +1,39 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+    <div class="container-md">
+        {% if loggedIn %}
+            <h2>Results:</h2>
+            {% else %}
+            <h2>Log in to save some cards!</h2>
+        {% endif %}
+        <div class="row">
+            <div class="row col-11">
+                <p><img src="{{ scryResult.image_uris.normal }}"</p>
+                {% for scryResult in scryResults %}
+                    <div class="col mt-2">
+                        <img src="{{ scryResult.image_uris.normal }}" width="226px" height="311px"></img>
+                        {% if loggedIn %}
+                            <form action="/savedCards" method="POST">
+                                <fieldset>
+                                    <input 
+                                        type="hidden" 
+                                        name="name" 
+                                        class="form-control"
+                                        value="{{cards.name}}"
+                                    >
+                                    <input 
+                                        type="hidden" 
+                                        name="multiverseid" 
+                                        class="form-control"
+                                        value="{{cards.multiverseid}}"
+                                    >
+                                </fieldset>
+                                <input type="submit" class="btn btn-success" value="Save">
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>  
+{% endblock %}

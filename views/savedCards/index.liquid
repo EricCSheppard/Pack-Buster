@@ -6,6 +6,7 @@
 {% else %}
     <h2>{{ user.username }}'s Cards</h2>
 {% endif %}
+<hr>
     {% if savedCards.length > 0 %}
     <div class="row">
         {% for savedCard in savedCards %}
@@ -20,7 +21,7 @@
         </div>
     {% endif %}
     <hr>
-    <h5>comments</h5>
+    <h5>Comments</h5>
     <hr>
     {% if loggedIn %}
         <div class="col-md-6">
@@ -40,7 +41,7 @@
     {% endif %}
     <hr>
     {% if user.comments.length > 0 %}
-        <div class="container-sm justify-content-center">
+        <div class="container-sm">
             {% for comm in user.comments %}
                     {% render '../comment.liquid', comm: comm, ownerId: ownerId, userId: userId, user: user %}
             {% endfor %}

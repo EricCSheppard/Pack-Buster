@@ -8,21 +8,23 @@
         <hr>
         <div class="row">
             <div class="col-3 zoom">
-                <img src="{{ scryInfo.image_uris.png }}" height="311px" width="226px">
+                <img src="{{ scryInfo.image_uris.png }}" heigh="75%" width="75%">
             </div>
-            <div class="col-9">
+            <div class="col-5 cardInfo bg-light">
                 <h4>Additional Info:</h4>
-                <p>Card Type: {{ scryInfo.type_line }}</p>
-                <p>Oracle Text: {{ scryInfo.oracle_text }}</p>
-                <p>Converted Mana Cost: {{ scryInfo.cmc }}</p>
-                <p>Purchase card at tcgplayer.com: <a href="{{ scryInfo.purchase_uris.tcgplayer }}">Buy now!</a></p>
-
-
+                <p><b>Card Type:</b> {{ scryInfo.type_line }}</p>
+                <p><b>Oracle Text:</b> {{ scryInfo.oracle_text }}</p>
+                <p><b>Converted Mana Cost:</b> {{ scryInfo.cmc }}</p>
+                <p><b>Purchase card at tcgplayer.com:</b> <a href="{{ scryInfo.purchase_uris.tcgplayer }}">Buy now!</a></p>
             </div>
+            <div class="col-4"></div>
         </div>
-        <div class="cardInfo col-3 mt-2 bg-light">
-                <p class="mt-2 ms-3">Notes:<br> {{ savedCard.notes }} </p>
+        {% if savedCard.notes %}
+            <p class="mt-4">User notes:</p>
+            <div class="cardInfo col-3 mt-2 bg-light">
+                <p class="mt-2 ms-2">{{ savedCard.notes }} </p>
             </div>
+        {% endif %}
     <hr>
         {% if savedCard.owner == userId %}
         <div class="btn-group mt-3">

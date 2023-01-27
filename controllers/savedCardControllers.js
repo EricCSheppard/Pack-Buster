@@ -8,7 +8,6 @@ const User = require('../models/user')
 const router = express.Router()
 
 // Postman card index route ----------------------
-
 router.get('/cardinfo', (req, res) => {
     savedCard.find({})
     .then(savedCard => {

@@ -31,6 +31,21 @@ router.post('/newpack', (req, res) => {
 })
 
 // SEARCH card route
-// router.get('/cardsearch', )
+router.post('/search', (req, res) => {
+    const mtgSearch = req.body.name
+    console.log(mtgSearch)
+    const { username, userId, loggedIn } = req.session
+    // const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/named?fuzzy=${mtgSearch}`)
+    savedCard.find({ owner: userId })
+    .then(async savedCard => {
+        const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/named?fuzzy=${mtgSearch}`)
+        const scryResult = addlInfo.data
+        res.render('mtgapi/searchresults.liquid', { scryResult, savedCard, username, loggedIn, userId })
+    })
+    .catch((error) => {
+        res.redirect(`/error?error=${error}`)
+    })
+})
 
+// https://api.scryfall.com/aust+com
 module.exports = router

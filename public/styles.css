@@ -8,7 +8,6 @@ body {
 
 .zoom {
     transition: transform .2s;
-
     margin: 0 auto;
 }
 
@@ -17,7 +16,7 @@ body {
 }
 
 .cardInfo {
-    width: 33%;
+
     border: 1px solid grey;
     border-radius: 5px;
 }
