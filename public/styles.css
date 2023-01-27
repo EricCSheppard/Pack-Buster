@@ -21,6 +21,19 @@ body {
     border: 1px solid grey;
     border-radius: 5px;
 }
+
+.cardstack {
+    margin-top: -250px;
+    margin-left: 10px;
+}
+
+.cardstack:hover {
+    z-index:555555 !important;
+}
+
+.toprow {
+    padding-top: 250px;
+}
 /* 
 .preload {
     display: none;
