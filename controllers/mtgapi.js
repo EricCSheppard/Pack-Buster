@@ -8,7 +8,7 @@ const savedCard = require('../models/savedCard')
 // CREATE ROUTER -------------------------------
 const router = express.Router()
 
-// API CALL - for a booster pack using the set option seleted from the main page.
+// BOOSTER API CALL -> (mtgapi API) -> for a booster pack using the set option seleted from the main page.
 router.post('/newpack', (req, res) => {
     const mtgSet = req.body.set
     const { username, userId, loggedIn } = req.session
@@ -30,22 +30,23 @@ router.post('/newpack', (req, res) => {
     })
 })
 
-// SEARCH card route
+// SEARCH API CALL -> (Scryfall API)
 router.post('/search', (req, res) => {
     const mtgSearch = req.body.name
     console.log(mtgSearch)
     const { username, userId, loggedIn } = req.session
-    // const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/named?fuzzy=${mtgSearch}`)
     savedCard.find({ owner: userId })
     .then(async savedCard => {
-        const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/named?fuzzy=${mtgSearch}`)
-        const scryResult = addlInfo.data
+        const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/search?q=${mtgSearch}`)
+        const scryResult = addlInfo.data.data
+        console.log(scryResult)
         res.render('mtgapi/searchresults.liquid', { scryResult, savedCard, username, loggedIn, userId })
     })
-    .catch((error) => {
-        res.redirect(`/error?error=${error}`)
+    .catch(() => {
+        res.render(`searchError.liquid`)
     })
 })
 
-// https://api.scryfall.com/aust+com
+// FUZZY SEARCH -> const addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/named?fuzzy=${mtgSearch}`)
+
 module.exports = router

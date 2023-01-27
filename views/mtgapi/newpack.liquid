@@ -34,7 +34,9 @@
                 {% endfor %}
             </div>
             <div class="col-1">
+            {%- comment -%}
             {% render './sidebar.liquid', savedCards: savedCards, userId: userId  %}
+            {%- endcomment -%}
             </div>
         </div>
     </div>  

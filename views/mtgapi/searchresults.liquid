@@ -8,10 +8,10 @@
         {% endif %}
         <div class="row">
             <div class="row col-11">
-                <p><img src="{{ scryResult.image_uris.normal }}"</p>
-                {% for scryResult in scryResults %}
+                <p><img src="{{ scryResult.image_uris.png }}"</p>
+                {% for cards in scryResult %}
                     <div class="col mt-2">
-                        <img src="{{ scryResult.image_uris.normal }}" width="226px" height="311px"></img>
+                        <img src="{{ cards.image_uris.png }}" height="311px" width="211px"></img>
                         {% if loggedIn %}
                             <form action="/savedCards" method="POST">
                                 <fieldset>
@@ -19,13 +19,13 @@
                                         type="hidden" 
                                         name="name" 
                                         class="form-control"
-                                        value="{{cards.name}}"
+                                        value="{{ cards.name }}"
                                     >
                                     <input 
                                         type="hidden" 
                                         name="multiverseid" 
                                         class="form-control"
-                                        value="{{cards.multiverseid}}"
+                                        value="{{ cards.multiverse_ids }}"
                                     >
                                 </fieldset>
                                 <input type="submit" class="btn btn-success" value="Save">
