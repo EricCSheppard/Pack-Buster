@@ -80,9 +80,13 @@ router.get('/user/:id', (req, res) => {
 		.then(async savedCards => {
             let addlInfo = []
             for (let i = 0; i < savedCards.length; i++) {
-                addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCards[i].multiverseid}`)
+                addlInfo.push(await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCards[i].multiverseid}`))
             }
-            let scryInfo = [addlInfo.data.image_uris]
+            let scryInfo = []
+            for (let i = 0; i < addlInfo.length; i++) {
+                scryInfo.push(addlInfo[i].data.image_uris)
+                scryInfo[i].id = savedCards[i].id
+            }
             console.log(scryInfo)
             User.findById(ownerId)
             .populate('comments.author', 'username')
