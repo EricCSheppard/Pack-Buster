@@ -77,24 +77,25 @@ router.get('/user/:id', (req, res) => {
     const { username, userId, loggedIn } = req.session
     const ownerId = req.params.id
 	savedCard.find({ owner: ownerId })
-		.then(savedCards => {
+		.then(async savedCards => {
+            let addlInfo = []
+            for (let i = 0; i < savedCards.length; i++) {
+                addlInfo = await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCards[i].multiverseid}`)
+            }
+            let scryInfo = [addlInfo.data.image_uris]
+            console.log(scryInfo)
             User.findById(ownerId)
             .populate('comments.author', 'username')
-            .then(user =>{
-                res.render('savedCards/index', { user, ownerId, savedCards, userId, username, loggedIn })
-            })
-            .catch(error => {
-                res.redirect(`/error?error=${error}`)
-            })
-			// res.render('savedCards/index', { user, ownerId, savedCards, username, loggedIn })
-            // console.log(user.comments)
-            // .populate('comments.author', 'username')
-            // console.log(savedCards)  
-		})
+                .then(user => {
+                    // console.log(savedCards)
+                    res.render('savedCards/index', { user, scryInfo, ownerId, savedCards, username, loggedIn, userId })
+                })
+        })
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
-})
+}) 
+
 
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
@@ -169,5 +170,26 @@ router.delete('/:id', (req, res) => {
 		})
 })
 
+
+
+// save for safety 
+// router.get('/user/:id', (req, res) => {
+//     const { username, userId, loggedIn } = req.session
+//     const ownerId = req.params.id
+// 	savedCard.find({ owner: ownerId })
+// 		.then(savedCards => {
+//             User.findById(ownerId)
+//             .populate('comments.author', 'username')
+//             .then(user =>{
+//                 res.render('savedCards/index', { user, ownerId, savedCards, userId, username, loggedIn })
+//             })
+//             .catch(error => {
+//                 res.redirect(`/error?error=${error}`)
+//             })
+// 		})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 // Export the Router
 module.exports = router
