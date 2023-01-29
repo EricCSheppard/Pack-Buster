@@ -72,7 +72,7 @@ router.get('/mine', (req, res) => {
 		})
 })
 
-// index that shows a specific user's savedCards
+// Index that shows a specific user's savedCards
 router.get('/user/:id', (req, res) => {
     const { username, userId, loggedIn } = req.session
     const ownerId = req.params.id

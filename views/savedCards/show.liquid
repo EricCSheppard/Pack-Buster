@@ -7,17 +7,21 @@
         </h2>
         <hr>
         <div class="row">
-            <div class="col-3 zoom">
+            <div class="col-4 zoom">
                 <img src="{{ scryInfo.image_uris.png }}" heigh="75%" width="75%">
             </div>
             <div class="col-5 cardInfo bg-light">
-                <h4>Additional Info:</h4>
+                <h5 class="mt-2">Additional Info:</h5>
                 <p><b>Card Type:</b> {{ scryInfo.type_line }}</p>
                 <p><b>Oracle Text:</b> {{ scryInfo.oracle_text }}</p>
                 <p><b>Converted Mana Cost:</b> {{ scryInfo.cmc }}</p>
+                <hr>
+                <h5>Links:</h5>
+                <p><b>View card on Gatherer:</b> <a href="{{ scryInfo.related_uris.gatherer }}">Here.</a></p>
+                <p><b>View card on EDHREC:</b> <a href="{{ scryInfo.related_uris.edhrec }}">Here.</a></p>
                 <p><b>Purchase card at tcgplayer.com:</b> <a href="{{ scryInfo.purchase_uris.tcgplayer }}">Buy now!</a></p>
             </div>
-            <div class="col-4"></div>
+            <div class="col-3"></div>
         </div>
         {% if savedCard.notes %}
             <p class="mt-4">User notes:</p>

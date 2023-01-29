@@ -13,11 +13,10 @@ body {
 }
 
 .zoom:hover {
-    transform: scale(1.5);
+    transform: scale(1.4);
 }
 
 .cardInfo {
-
     border: 1px solid grey;
     border-radius: 5px;
 }
