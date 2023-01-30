@@ -11,7 +11,8 @@
             <div class="row">
                 {% for cards in mtgCardPack %}
                     <div class="col mt-1">
-                        <img src="{{cards.imageUrl}}" width="226px" height="311px"></img>
+                        <div style="background-image: url('{{ cards.imageUrl }}'); background-size: cover; background-position: center; height: 311px; width: 222px; border-radius: 11px">
+                        </div>
                         {% if loggedIn %}
                             <form action="/savedCards" method="POST">
                                 <fieldset>
@@ -28,7 +29,7 @@
                                         value="{{cards.multiverseid}}"
                                     >
                                 </fieldset>
-                                <input type="submit" class="btn btn-success" value="Save">
+                                <input type="submit" class="btn btn-secondary btn-sm save" value="Save">
                             </form>
                         {% endif %}
                     </div>

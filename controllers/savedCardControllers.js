@@ -186,11 +186,9 @@ router.delete('/:id', (req, res) => {
 //                 scryInfo.push(addlInfo[i].data.image_uris)
 //                 scryInfo[i].id = savedCards[i].id
 //             }
-//             // console.log(scryInfo)
 //             User.findById(ownerId)
 //             .populate('comments.author', 'username')
 //                 .then(user => {
-//                     // console.log(savedCards)
 //                     res.render('savedCards/index', { user, scryInfo, ownerId, savedCards, username, loggedIn, userId })
 //                 })
 //         })

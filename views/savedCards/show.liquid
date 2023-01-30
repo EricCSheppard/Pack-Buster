@@ -13,8 +13,8 @@
             <div class="col-5 cardInfo bg-light">
                 <h5 class="mt-2">Additional Info:</h5>
                 <p><b>Card Type:</b> {{ scryInfo.type_line }}</p>
+                <p><b>Set:</b> {{ scryInfo.set_name }}</p>
                 <p><b>Oracle Text:</b> {{ scryInfo.oracle_text }}</p>
-                <p><b>Converted Mana Cost:</b> {{ scryInfo.cmc }}</p>
                 <hr>
                 <h5>Links:</h5>
                 <p><b>View card on Gatherer:</b> <a href="{{ scryInfo.related_uris.gatherer }}">Here.</a></p>
@@ -23,16 +23,16 @@
             </div>
             <div class="col-3"></div>
         </div>
-        {% if savedCard.notes %}
+        {% if savedCard.notes.length > 0 %}
             <p class="mt-4">User notes:</p>
             <div class="cardInfo col-3 mt-2 bg-light">
-                <p class="mt-2 ms-2">{{ savedCard.notes }} </p>
+                <p class="mt-2 ms-2">{{ savedCard.notes }}</p>
             </div>
         {% endif %}
     <hr>
         {% if savedCard.owner == userId %}
         <div class="btn-group mt-3">
-            <a href="/savedCards/edit/{{ savedCard.id }}" class="btn btn-outline-primary">Edit</a>
+            <a href="/savedCards/edit/{{ savedCard.id }}" class="btn btn-outline-primary">Add/Edit Note</a>
             <form action="/savedCards/{{ savedCard.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Remove" class="btn btn-outline-primary btn-small rounded-0 border-start-0">
             </form>

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(241, 248, 251);
+    background-color: rgb(249, 251, 253);
 }
 
 .mtgcard {
@@ -33,6 +33,13 @@ body {
 
 .toprow {
     padding-top: 250px;
+}
+
+.save {
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 10px;
+    /* border: 2px black solid; */
 }
 /* 
 .preload {
