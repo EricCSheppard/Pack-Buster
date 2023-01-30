@@ -9,6 +9,7 @@ const UserRouter = require('./controllers/user')
 const User = require("./models/user")
 const ApiRouter = require('./controllers/mtgapi')
 const CommentRouter = require('./controllers/commentControllers')
+const axios = require('axios')
 // const CardRouter = require('./controllers/cardControllers')
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -30,10 +31,12 @@ app.use('/mtgapi', ApiRouter)
 app.use('/comments', CommentRouter)
 // app.use('/cards', CardRouter)
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     const { username, userId, loggedIn } = req.session
-	res.render('index.liquid', { loggedIn, username, userId, })
-})
+    const setCall = await axios(`${process.env.MTG_API_URL}/sets`)
+    const sets = setCall.data.sets
+	res.render('index.liquid', { sets, loggedIn, username, userId, })
+})  
 
 app.get('/error', (req, res) => {
 	const error = req.query.error || 'This Page Does Not Exist'
