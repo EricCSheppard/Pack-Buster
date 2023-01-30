@@ -45,6 +45,24 @@ router.use((req, res, next) => {
 // 		})
 // })
 
+router.get('/user/:id', (req, res) => {
+    const { username, userId, loggedIn } = req.session
+    const ownerId = req.params.id
+	savedCard.find({ owner: ownerId })
+		.then(savedCards => {
+            User.findById(ownerId)
+            .populate('comments.author', 'username')
+            .then(user =>{
+                res.render('savedCards/index', { user, ownerId, savedCards, userId, username, loggedIn })
+            })
+            .catch(error => {
+                res.redirect(`/error?error=${error}`)
+            })
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
 
 // Index of users 
 router.get('/', (req, res) => {
@@ -73,32 +91,7 @@ router.get('/mine', (req, res) => {
 })
 
 // Index that shows a specific user's savedCards
-router.get('/user/:id', (req, res) => {
-    const { username, userId, loggedIn } = req.session
-    const ownerId = req.params.id
-	savedCard.find({ owner: ownerId })
-		.then(async savedCards => {
-            let addlInfo = []
-            for (let i = 0; i < savedCards.length; i++) {
-                addlInfo.push(await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCards[i].multiverseid}`))
-            }
-            let scryInfo = []
-            for (let i = 0; i < addlInfo.length; i++) {
-                scryInfo.push(addlInfo[i].data.image_uris)
-                scryInfo[i].id = savedCards[i].id
-            }
-            // console.log(scryInfo)
-            User.findById(ownerId)
-            .populate('comments.author', 'username')
-                .then(user => {
-                    // console.log(savedCards)
-                    res.render('savedCards/index', { user, scryInfo, ownerId, savedCards, username, loggedIn, userId })
-                })
-        })
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
-}) 
+
 
 
 // new route -> GET route that renders our page with the form
@@ -177,23 +170,36 @@ router.delete('/:id', (req, res) => {
 
 
 // save for safety 
+
+
 // router.get('/user/:id', (req, res) => {
 //     const { username, userId, loggedIn } = req.session
 //     const ownerId = req.params.id
 // 	savedCard.find({ owner: ownerId })
-// 		.then(savedCards => {
+// 		.then(async savedCards => {
+//             let addlInfo = []
+//             for (let i = 0; i < savedCards.length; i++) {
+//                 addlInfo.push(await axios(`${process.env.SCRY_API_URL}/cards/multiverse/${savedCards[i].multiverseid}`))
+//             }
+//             let scryInfo = []
+//             for (let i = 0; i < addlInfo.length; i++) {
+//                 scryInfo.push(addlInfo[i].data.image_uris)
+//                 scryInfo[i].id = savedCards[i].id
+//             }
+//             // console.log(scryInfo)
 //             User.findById(ownerId)
 //             .populate('comments.author', 'username')
-//             .then(user =>{
-//                 res.render('savedCards/index', { user, ownerId, savedCards, userId, username, loggedIn })
-//             })
-//             .catch(error => {
-//                 res.redirect(`/error?error=${error}`)
-//             })
-// 		})
+//                 .then(user => {
+//                     // console.log(savedCards)
+//                     res.render('savedCards/index', { user, scryInfo, ownerId, savedCards, username, loggedIn, userId })
+//                 })
+//         })
 // 		.catch(error => {
 // 			res.redirect(`/error?error=${error}`)
 // 		})
-// })
+// }) 
+
+
+
 // Export the Router
 module.exports = router

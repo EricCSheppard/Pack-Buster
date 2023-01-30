@@ -7,12 +7,13 @@
     <h2>{{ user.username }}'s Cards</h2>
 {% endif %}
 <hr>
-    {% if scryInfo.length > 0 %}
+    {% if savedCards.length > 0 %}
     <div class="row toprow mt-2">
-        {% for card in scryInfo %}
-            <div class="col-2 cardstack">
-                <a href="/savedCards/{{ card.id }}"><img src="{{ card.png }}" height="311px" width="226px"></a>
+        {% for card in savedCards %}
+            <a href="/savedCards/{{ card.id }}" class="col-2 me-1 cardstack">
+            <div class="col-2" style="background-image: url('https://gatherer.wizards.com/Handlers/Image.ashx?type=card&multiverseid={{ card.multiverseid }}'); background-size: cover; background-position: center; height: 311px; width: 222px; border-radius: 11px">
             </div>
+            </a>
         {% endfor %}
     </div>
     {% else %}
@@ -27,8 +28,6 @@
         <div class="col-md-6">
             <form action="/comments/{{ ownerId }}" method="POST">
                 <fieldset>
-                    <legend>Add Comment</legend>
-                    <label class="form-label">comment:</label>
                     <input type="text" class="form-control mb-1" name="note">
                 </fieldset>
                 <input type="submit" class="btn btn-primary" value="add comment">
