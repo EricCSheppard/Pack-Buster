@@ -9,9 +9,9 @@
 <hr>
     {% if scryInfo.length > 0 %}
     <div class="row toprow mt-2">
-        {% for scryCard in scryInfo %}
+        {% for card in scryInfo %}
             <div class="col-2 cardstack">
-                <a href="/savedCards/{{ scryCard.id }}"><img src="{{ scryCard.png }}" height="311px" width="226px"></a>
+                <a href="/savedCards/{{ card.id }}"><img src="{{ card.png }}" height="311px" width="226px"></a>
             </div>
         {% endfor %}
     </div>

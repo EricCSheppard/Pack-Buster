@@ -87,7 +87,7 @@ router.get('/user/:id', (req, res) => {
                 scryInfo.push(addlInfo[i].data.image_uris)
                 scryInfo[i].id = savedCards[i].id
             }
-            console.log(scryInfo)
+            // console.log(scryInfo)
             User.findById(ownerId)
             .populate('comments.author', 'username')
                 .then(user => {
