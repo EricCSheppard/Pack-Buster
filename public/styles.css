@@ -8,22 +8,22 @@ body {
 
 .zoom {
     transition: transform .2s;
-    margin: 0 auto;
+    margin: 10 auto;
     z-index: 10;
 }
 
 .zoom:hover {
-    transform: scale(1.4);
+    transform: scale(1.3);
 }
 
 .cardInfo {
-    padding: 0px 55px 0px 55px;
-    /* border: 1px solid grey;
-    border-radius: 5px; */
-    background-image: url('/ScrollBg2.png');
+    
+    padding: 50px 65px 20px 65px;
+    background-image: url('/ScrollBg2crop.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    height: 520px;
 }
 
 .noteInfo {
@@ -54,6 +54,11 @@ body {
     opacity: .8;
     /* border: 2px black solid; */
 }
+
+.navshadow {
+    text-shadow: 1px 1px 2px grey;
+}
+
 /* 
 .preload {
     display: none;

@@ -7,10 +7,10 @@
         </h2>
         <hr>
         <div class="row">
-            <div class="col-4 zoom">
-                <img src="{{ scryInfo.image_uris.png }}" heigh="75%" width="75%">
+            <div class="col-4 mt-4 zoom">
+                <img src="{{ scryInfo.image_uris.png }}" width="75%">
             </div>
-            <div class="col-5 cardInfo bg-light">
+            <div class="col-5 cardInfo bg-light fs-6">
                 <h5 class="mt-2">Additional Info:</h5>
                 <p><b>Card Type:</b> {{ scryInfo.type_line }}</p>
                 <p><b>Set:</b> {{ scryInfo.set_name }}</p>
@@ -24,8 +24,8 @@
             <div class="col-3"></div>
         </div>
         {% if savedCard.notes.length > 0 %}
-            <p class="mt-4">User notes:</p>
-            <div class="noteInfo col-3 mt-2 bg-light">
+            <p>User notes:</p>
+            <div class="noteInfo col-3 mt-1 bg-light">
                 <p class="mt-2 ms-2">{{ savedCard.notes }}</p>
             </div>
         {% endif %}
