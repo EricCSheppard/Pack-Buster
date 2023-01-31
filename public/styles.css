@@ -39,6 +39,8 @@ body {
 
 .cardstack:hover {
     z-index:555555 !important;
+    transform: translate(0px, 10px);
+    transition: .2s;
 }
 
 .toprow {
@@ -49,6 +51,7 @@ body {
     position: absolute;
     margin-top: -40px;
     margin-left: 10px;
+    opacity: .8;
     /* border: 2px black solid; */
 }
 /* 
