@@ -4,7 +4,7 @@
 ## Overview
 ---
 
-Pack Buster is an application where users can open virtual booster packs of the trading card game, Magic the Gathering.  Packs from various sets over the years will be available to open.  If you get a good hit, you can save your pack for other users to view and comment on.
+Pack Buster is an application where users can open virtual booster packs of the trading card game, Magic the Gathering.  Packs from various sets over the years will be available to open.  If you get a good hit, you can save your card to your collection for other users to view and comment on!  Each saved card can be viewed to see more information and get additional links.  
 
 
 ## Technologies used
@@ -15,7 +15,7 @@ Pack Buster is an application where users can open virtual booster packs of the 
     Mongoose
     Express
     Liquid
-
+    Axios
 ---
 ## User Stories
 
@@ -25,10 +25,11 @@ Pack Buster is an application where users can open virtual booster packs of the 
     As a user I want the ability to choose a set to open a pack from
     As a user I want the ability to see the cards in the pack
     As a user I want the ability to see more information about the cards
-    As a user I want the ability to save a pack that I liked
-    As a user I want the ability to comment on my own and other users saved packs
-    As a user I want the ability to see a list of my saved packs
-    As a user I want the ability to remove saved packs from my collection
+    As a user I want the ability to save a card that I liked
+    As a user I want the ability to comment on my own and other users card collections
+    As a user I want the ability to see a list of my saved cards
+    As a user I want the ability to remove saved cards from my collection
+    As a user I want the ability to add custom notes to my cards
 
 ## Route Tables for Documents
 ---
@@ -43,22 +44,32 @@ Pack Buster is an application where users can open virtual booster packs of the 
 | /users/logout  |    POST     | destroy     |
 
 
-## Packs
+## Cards
 
 | URL       |   HTTP Verb|  Action |
 | ----------- | ----------- | ----|
-| /packs/open     | GET       | show      |
-| /packs/new  |    POST     | create     |
-| /packs/:id  |    GET      | show     |
-| /packs/  |    GET      | index     |
-| /packs/:id |    DELETE      | destroy     |
+| /savedCards/new  |    POST     | create     |
+| /savedCards/  |    GET     | index     |
+| /savedCards/:id  |    GET      | show     |
+| /savedCards/user/:id  |    GET      | index     |
+| /savedCards/edit/:id |    PUT      | update     |
+| /savedCards/:id |    DELETE      | destroy     |
+
+## API
+
+| URL       |   HTTP Verb|  Action |
+| ----------- | ----------- | ----|
+| /mtgapi/open     | GET       | index      |
+| /mtgapi/*    | GET       | search      |
+
+
 
 ## Comments
 
 | URL       |   HTTP Verb|  Action |
 | ----------- | ----------- | ----|
-| /comments/:packId     | POST       | create      |
-| /comments/delete/:packId/:commentId  |    DELETE     | destroy     |
+| /comments/:userId     | POST       | create      |
+| /comments/delete/:userId/:commentId  |    DELETE     | destroy     |
 
 ---
 ## Wireframes
@@ -69,4 +80,4 @@ Pack Buster is an application where users can open virtual booster packs of the 
 ## ERD
 ---
 
-![Pack Buster ERD](https://i.imgur.com/LR4PWj6.png)
+![Pack Buster ERD](./img/Pack%20Buster%20ERD.png)

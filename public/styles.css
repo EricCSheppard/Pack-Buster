@@ -17,6 +17,16 @@ body {
 }
 
 .cardInfo {
+    padding: 0px 55px 0px 55px;
+    /* border: 1px solid grey;
+    border-radius: 5px; */
+    background-image: url('/ScrollBg2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.noteInfo {
     border: 1px solid grey;
     border-radius: 5px;
 }
