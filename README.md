@@ -41,6 +41,7 @@ Pack Buster is an application where users can open virtual booster packs of the 
 | /users/signup  |    POST      | create     |
 | /users/login  |    GET      | login     |
 | /users/login  |    POST      | create     |
+| /savedCards/  |    GET     | index     |
 | /users/logout  |    POST     | destroy     |
 
 
@@ -49,7 +50,6 @@ Pack Buster is an application where users can open virtual booster packs of the 
 | URL       |   HTTP Verb|  Action |
 | ----------- | ----------- | ----|
 | /savedCards/new  |    POST     | create     |
-| /savedCards/  |    GET     | index     |
 | /savedCards/:id  |    GET      | show     |
 | /savedCards/user/:id  |    GET      | index     |
 | /savedCards/edit/:id |    PUT      | update     |
