@@ -39,7 +39,7 @@ body {
 
 .cardstack:hover {
     z-index:555555 !important;
-    transform: translate(0px, 10px);
+    transform: translate(0px,-10px);
     transition: .2s;
 }
 
